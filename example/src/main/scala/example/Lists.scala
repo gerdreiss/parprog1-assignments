@@ -1,5 +1,7 @@
 package example
 
+import sun.plugin.dom.exception.InvalidStateException
+
 
 object Lists {
 
@@ -25,6 +27,7 @@ object Lists {
    */
     def sum(xs: List[Int]): Int = {
       if (xs.isEmpty) 0
+      else if (xs.tail.isEmpty) xs.head
       else xs.head + sum(xs.tail)
     }
   
@@ -41,9 +44,9 @@ object Lists {
    * @return The largest element in `xs`
    * @throws java.util.NoSuchElementException if `xs` is an empty list
    */
-    def max(xs: List[Int]): Int = xs match {
-      case y :: Nil => y
-      case y :: ys => scala.math.max(y, max(ys))
-      case _ => Int.MinValue
+    def max(xs: List[Int]): Int = {
+      if (xs.isEmpty) throw new InvalidStateException("max() called on empty list")
+      else if (xs.tail.isEmpty) xs.head
+      else scala.math.max(xs.head, max(xs.tail))
     }
   }
