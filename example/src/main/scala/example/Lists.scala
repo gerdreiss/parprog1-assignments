@@ -1,8 +1,5 @@
 package example
 
-import sun.plugin.dom.exception.InvalidStateException
-
-
 object Lists {
 
   /**
@@ -45,7 +42,7 @@ object Lists {
    * @throws java.util.NoSuchElementException if `xs` is an empty list
    */
     def max(xs: List[Int]): Int = {
-      if (xs.isEmpty) throw new InvalidStateException("max() called on empty list")
+      if (xs.isEmpty) throw new Error("max() called on empty list")
       else if (xs.tail.isEmpty) xs.head
       else scala.math.max(xs.head, max(xs.tail))
     }
