@@ -3,4 +3,4 @@
 ## Assignments
 
 
-1.  Week - Example + Parallel Box Blur Filter
+1.  Week - Example (example) + Parallel Box Blur Filter (scalashop)
