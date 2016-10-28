@@ -56,7 +56,7 @@ object HorizontalBoxBlur {
    *  rows.
    */
   def parBlur(src: Img, dst: Img, numTasks: Int, radius: Int): Unit = {
-    val rows = src.height / numTasks
+    val rows = scala.math.max(src.height / numTasks, 1)
     val steps = 0 to src.height by rows
 
     val tasks = for {

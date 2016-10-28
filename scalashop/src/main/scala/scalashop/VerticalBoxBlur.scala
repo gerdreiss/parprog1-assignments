@@ -44,8 +44,10 @@ object VerticalBoxBlur {
    */
   def blur(src: Img, dst: Img, from: Int, end: Int, radius: Int): Unit = {
     for (x <- from until end) {
-      for (y <- 0 until src.height) {
-        dst(x, y) = boxBlurKernel(src, x, y, radius)
+      if (x < src.width) {
+        for (y <- 0 until src.height) {
+          dst(x, y) = boxBlurKernel(src, x, y, radius)
+        }
       }
     }
   }
@@ -57,7 +59,7 @@ object VerticalBoxBlur {
    *  columns.
    */
   def parBlur(src: Img, dst: Img, numTasks: Int, radius: Int): Unit = {
-    val columns = src.width / numTasks
+    val columns = scala.math.max(src.width / numTasks, 1)
     val steps = 0 to src.width by columns
 
     val tasks = for {
