@@ -44,7 +44,9 @@ object HorizontalBoxBlur {
   def blur(src: Img, dst: Img, from: Int, end: Int, radius: Int): Unit = {
     for (x <- 0 until src.width) {
       for (y <- from until end) {
-        dst(x, y) = boxBlurKernel(src, x, y, radius)
+        if (y < src.height) {
+          dst(x, y) = boxBlurKernel(src, x, y, radius)
+        }
       }
     }
   }
@@ -61,7 +63,7 @@ object HorizontalBoxBlur {
 
     val tasks = for {
       step <- steps
-    } yield task(blur(src, dst, step + rows, step, radius))
+    } yield task(blur(src, dst, step, step + rows, radius))
 
     tasks.foreach(_.join())
   }
