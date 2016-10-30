@@ -129,7 +129,7 @@ object ScalaShop {
   }
 
   try {
-    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
+    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName)
   } catch {
     case _: Exception => println("Cannot set look and feel, using the default one.")
   }
