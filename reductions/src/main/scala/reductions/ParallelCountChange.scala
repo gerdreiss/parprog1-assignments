@@ -62,8 +62,7 @@ object ParallelCountChange {
     } else {
       val (l, r) = parallel(
         parCountChange(money - coins.head, coins, threshold),
-        parCountChange(money, coins.tail, threshold)
-      )
+        parCountChange(money, coins.tail, threshold))
       l + r
     }
   }
