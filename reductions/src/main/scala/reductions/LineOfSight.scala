@@ -71,10 +71,13 @@ object LineOfSight {
     * work is divided and done recursively in parallel.
     */
   def upsweep(input: Array[Float], from: Int, end: Int, threshold: Int): Tree = {
-    if (end - threshold <= threshold) Leaf(from, end, upsweepSequential(input, from, end))
+    if (end - from <= threshold) Leaf(from, end, upsweepSequential(input, from, end))
     else {
       val mid = from + (end - from) / 2
-      Node(upsweep(input, from, mid, threshold), upsweep(input, mid, end, threshold))
+      val (left, right) = parallel(
+        upsweep(input, from, mid, threshold),
+        upsweep(input, mid, end, threshold))
+      Node(left, right)
     }
   }
 
