@@ -5,3 +5,5 @@
 
 1.  Week - Example (example) + Parallel Box Blur Filter (scalashop)
 2.  Week - Reductions and Prefix Sums (reductions)
+3.  Week - K-Means (kmeans)
+
