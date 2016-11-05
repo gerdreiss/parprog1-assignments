@@ -12,21 +12,21 @@ import common._
 class Simulator(val taskSupport: TaskSupport, val timeStats: TimeStatistics) {
 
   def updateBoundaries(boundaries: Boundaries, body: Body): Boundaries = {
-    val b = new Boundaries()
-    b.minX = math.min(body.x, boundaries.minX)
-    b.minY = math.min(body.y, boundaries.minY)
-    b.maxX = math.max(body.x, boundaries.maxX)
-    b.maxY = math.max(body.y, boundaries.maxY)
-    b
+    val newBoundaries = new Boundaries()
+    newBoundaries.minX = math.min(body.x, boundaries.minX)
+    newBoundaries.minY = math.min(body.y, boundaries.minY)
+    newBoundaries.maxX = math.max(body.x, boundaries.maxX)
+    newBoundaries.maxY = math.max(body.y, boundaries.maxY)
+    newBoundaries
   }
 
   def mergeBoundaries(a: Boundaries, b: Boundaries): Boundaries = {
-    val b = new Boundaries()
-    b.minX = math.min(a.minX, b.minX)
-    b.minY = math.min(a.minY, b.minY)
-    b.maxX = math.max(a.maxX, b.maxX)
-    b.maxY = math.max(a.maxY, b.maxY)
-    b
+    val newBoundaries = new Boundaries()
+    newBoundaries.minX = math.min(a.minX, b.minX)
+    newBoundaries.minY = math.min(a.minY, b.minY)
+    newBoundaries.maxX = math.max(a.maxX, b.maxX)
+    newBoundaries.maxY = math.max(a.maxY, b.maxY)
+    newBoundaries
   }
 
   def computeBoundaries(bodies: Seq[Body]): Boundaries = timeStats.timed("boundaries") {
