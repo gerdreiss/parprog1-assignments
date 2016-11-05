@@ -190,7 +190,7 @@ package object barneshut {
       val result = new SectorMatrix(boundaries, sectorPrecision)
 
       for (i <- matrix.indices) {
-        result.matrix(i) = matrix(i).combine(that.matrix(i))
+        matrix.update(i, matrix(i).combine(that.matrix(i)))
       }
 
       result
