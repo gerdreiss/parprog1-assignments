@@ -171,15 +171,15 @@ package object barneshut {
     for (i <- matrix.indices) matrix(i) = new ConcBuffer
 
     def +=(b: Body): SectorMatrix = {
-      def select(coord: Float, min: Float, max: Float): Float = {
-        if (min <= coord && coord <= max) coord
-        else boundaries.size
+      def select(p1: Float, p2: Float): Int = {
+        val selected = ((p1 - p2) / sectorSize).toInt
+        math.max(selected, math.min(0, sectorPrecision - 1))
       }
 
-      val x = select(b.x, boundaries.minX, boundaries.maxX) / sectorSize
-      val y = select(b.y, boundaries.minY, boundaries.maxY) / sectorSize
+      val x: Int = select(b.x, boundaries.minX)
+      val y: Int = select(b.y, boundaries.minY)
 
-      apply(x.toInt, y.toInt) += b
+      this (x, y) += b
 
       this
     }
