@@ -70,7 +70,7 @@ package object barneshut {
           Empty(centerX - fourthSize, centerY + fourthSize, halfSize),
           Empty(centerX + fourthSize, centerY + fourthSize, halfSize))
         bodies.foreach(b => f = f.insert(b))
-        f
+        f.insert(b)
       }
     }
   }
